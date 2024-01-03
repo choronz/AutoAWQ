@@ -43,7 +43,7 @@ jobs:
             }
       - name: Extract branch info
         env:
-          GITHUB_ENV: echo '${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name'
+          GITHUB_ENV:  ${{ '${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name' }}
         run: echo "$GITHUB_ENV"
 
       - name: Create Release
