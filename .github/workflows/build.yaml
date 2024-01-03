@@ -27,7 +27,6 @@ jobs:
         uses: "actions/github-script@v6"
         env:
           RELEASE_TAG: ${{ github.event.inputs.ref }}
-          release_tag: ${{ github.event.inputs.ref }}
           GITHUB_ENV: ${{ github.event.inputs.ref }}
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
