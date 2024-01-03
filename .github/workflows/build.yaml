@@ -5,6 +5,11 @@ on:
     tags:
       - "v*"
   workflow_dispatch:
+    inputs:
+      tags:
+        default: "v0.1.8"
+        required: true
+        type: string
 
 jobs:
   release:
