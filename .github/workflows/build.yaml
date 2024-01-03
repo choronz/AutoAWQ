@@ -6,8 +6,14 @@ on:
       - "v*"
   workflow_dispatch:
     inputs:
-      ref:
-        default: "v0.1.8"
+      version:
+        default: 'v0.1.8'
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      version:
+        default: 'v0.1.8'
         required: true
         type: string
 
@@ -26,8 +32,8 @@ jobs:
         id: create_release
         uses: "actions/github-script@v6"
         env:
-          RELEASE_TAG: ${{ github.event.inputs.ref }}
-          GITHUB_ENV: ${{ github.event.inputs.ref }}
+          RELEASE_TAG: ${{ github.event.inputs.version }}
+          GITHUB_ENV: ${{ github.event.inputs.version }}
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           script: |
