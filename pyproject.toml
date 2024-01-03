@@ -1,0 +1,30 @@
+
+[project]
+name = "AutoAWQ"
+dynamic = ["version"]
+description = "AutoAWQ implements the AWQ algorithm for 4-bit quantization with a 2x speedup during inference."
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+    "autoawq-kernels",
+    "torch>=2.1.0",
+    "transformers>=4.35.0",
+    "tokenizers>=0.12.1",
+    "accelerate",
+    "sentencepiece",
+    "lm_eval",
+    "texttable",
+    "toml",
+    "attributedict",
+    "protobuf",
+    "tabulate"
+]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[tool.pytest.ini_options]
+addopts = "--ignore=vendor"
+
