@@ -33,8 +33,6 @@ common_setup_kwargs = {
         "Environment :: GPU :: NVIDIA CUDA :: 12",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: C++",
@@ -43,7 +41,7 @@ common_setup_kwargs = {
 
 requirements = [
     "autoawq-kernels",
-    "torch>=2.0.1",
+    "torch>=2.1.0",
     "transformers>=4.35.0",
     "tokenizers>=0.12.1",
     "accelerate",
