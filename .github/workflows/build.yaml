@@ -35,12 +35,10 @@ jobs:
                 tag: "${{ github.event.inputs.ref }}"
               })
             } else {
-              return github.rest.repos.getReleaseByTag({
+              return github.rest.repos.getLatestRelease({
                 owner: context.repo.owner,
-                repo: context.repo.repo,
-                tag: "${{ github.ref_name }}"
-              })
-            }
+                repo: context.repo.repo
+            })
       - name: Extract branch info
         shell: bash
         run: |
