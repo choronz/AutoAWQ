@@ -41,7 +41,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
         pyver: ["3.11"]
         cuda: ["12.1.1"]
     defaults:
