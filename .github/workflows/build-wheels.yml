@@ -53,13 +53,13 @@ jobs:
         shell: pwsh
     env:
       CUDAVER: ${{ matrix.cuda }}
-      PCKGVER: ${{ inputs.version }}
+      PCKGVER: ${{ github.event.inputs.version }}
 
     steps:
       - uses: actions/checkout@v4
         with:
           repository: 'choronz/AutoAWQ'
-          ref: ${{ inputs.version }}
+          ref: ${{ github.event.inputs.version }}
           submodules: 'recursive'
           
       - uses: actions/setup-python@v4
@@ -145,7 +145,7 @@ jobs:
         continue-on-error: true
         with:
           file: ./dist/*.whl
-          tag: ${{ inputs.version }}
+          tag: ${{ github.event.inputs.version }}
           file_glob: true
           make_latest: false
           overwrite: true
@@ -153,7 +153,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: steps.upload-release.outcome == 'failure'
         with:
-          name: ${{ inputs.version }}
+          name: ${{ github.event.inputs.version }}
           path: ./dist/*.whl
 
 #  build_cpu:
