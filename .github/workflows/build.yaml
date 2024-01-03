@@ -41,16 +41,18 @@ jobs:
                 tag: "${{ github.event.inputs.ref }}"
               })
             }
+            
       - name: Extract branch info
         shell: bash
+        if: steps.get-release.outputs.result != ''
+        run: echo '${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name'
         # env:GITHUB_ENV:  ${{  }}
-        run: echo "'${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name'" >> "env:$GITHUB_ENV"
 
       - name: Create Release
         id: create_release
         uses: "actions/github-script@v6"
         env:
-          RELEASE_TAG: ${{ env.release_tag }}
+          RELEASE_TAG: ${{ github.event.inputs.ref }}
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           script: |
