@@ -38,7 +38,8 @@ jobs:
               return github.rest.repos.getLatestRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo
-            })
+              })
+            }
       - name: Extract branch info
         shell: bash
         run: |
