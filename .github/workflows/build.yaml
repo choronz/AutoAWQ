@@ -21,32 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Get-Release
-        id: get-release
-        uses: actions/github-script@v6
-        with:
-          retries: 3
-          script: |
-            if (${{ startsWith(github.event.inputs.ref, 'v') }}) {
-              return github.rest.repos.getReleaseByTag({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                tag: "${{ github.event.inputs.ref }}"
-              })
-            } else {
-              return github.rest.repos.getLatestRelease({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                tag: "${{ github.event.inputs.ref }}"
-              })
-            }
-            
-      - name: Extract branch info
-        shell: bash
-        if: steps.get-release.outputs.result != ''
-        run: echo '${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name'
-        # env:GITHUB_ENV:  ${{  }}
 
       - name: Create Release
         id: create_release
