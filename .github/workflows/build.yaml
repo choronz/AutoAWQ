@@ -6,7 +6,7 @@ on:
       - "v*"
   workflow_dispatch:
     inputs:
-      tags:
+      ref:
         default: "v0.1.8"
         required: true
         type: string
@@ -37,7 +37,8 @@ jobs:
             } else {
               return github.rest.repos.getLatestRelease({
                 owner: context.repo.owner,
-                repo: context.repo.repo
+                repo: context.repo.repo,
+                tag: "${{ github.event.inputs.ref }}"
               })
             }
       - name: Extract branch info
